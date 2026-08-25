@@ -9,11 +9,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             margin: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
         }
         
         .container {
@@ -22,121 +21,18 @@
             padding: 50px;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            width: 100%;
         }
         
         h1 {
             color: #333;
-            margin: 0 0 20px 0;
+            margin: 0;
             font-size: 3em;
         }
         
         p {
             color: #666;
-            margin: 0 0 40px 0;
+            margin: 20px 0 0 0;
             font-size: 1.1em;
-        }
-        
-        .chat-box {
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 400px;
-            background: #f9f9f9;
-        }
-        
-        .chat-header {
-            background: #667eea;
-            color: white;
-            padding: 15px;
-            font-weight: bold;
-            font-size: 1em;
-        }
-        
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .message {
-            padding: 10px 15px;
-            border-radius: 8px;
-            max-width: 80%;
-            word-wrap: break-word;
-            font-size: 0.95em;
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .user-message {
-            background: #667eea;
-            color: white;
-            align-self: flex-end;
-        }
-        
-        .bot-message {
-            background: #e0e0e0;
-            color: #333;
-            align-self: flex-start;
-        }
-        
-        .chat-input-area {
-            display: flex;
-            gap: 10px;
-            padding: 15px;
-            border-top: 1px solid #ddd;
-            background: white;
-        }
-        
-        .chat-input-area input {
-            flex: 1;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            font-size: 0.95em;
-            font-family: inherit;
-        }
-        
-        .chat-input-area input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
-        }
-        
-        .send-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        
-        .send-btn:hover {
-            background: #764ba2;
-        }
-        
-        .send-btn:active {
-            transform: scale(0.98);
         }
     </style>
 </head>
@@ -144,62 +40,6 @@
     <div class="container">
         <h1>Hello World!</h1>
         <p>Welcome to jaxpher.github.io</p>
-        
-        <div class="chat-box">
-            <div class="chat-header">💬 Chat</div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="message bot-message">Hi there! 👋 How can I help you?</div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInput" placeholder="Type a message...">
-                <button class="send-btn" onclick="sendMessage()">Send</button>
-            </div>
-        </div>
     </div>
-
-    <script>
-        // Simple responses
-        const responses = [
-            "That's interesting! 🤔",
-            "I like that! 😊",
-            "Cool! Tell me more.",
-            "Awesome! 🎉",
-            "Got it! 👍",
-            "Thanks for chatting! 💬"
-        ];
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            
-            if (message === '') return;
-            
-            // Add user message
-            addMessage(message, 'user');
-            input.value = '';
-            
-            // Simulate bot response after a short delay
-            setTimeout(() => {
-                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                addMessage(randomResponse, 'bot');
-            }, 500);
-        }
-
-        function addMessage(text, sender) {
-            const chatMessages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}-message`;
-            messageDiv.textContent = text;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Allow sending with Enter key
-        document.getElementById('chatInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-    </script>
 </body>
 </html>
